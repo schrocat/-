@@ -4,7 +4,10 @@ const Controller = require('egg').Controller;
 
 const create_rule = {
   name: 'string',
-  info: 'string',
+  info: {
+    type: 'string',
+    required: false
+  },
   academyId: 'int',
 };
 const update_rule = {
