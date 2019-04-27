@@ -5,7 +5,8 @@ const Service = require('egg').Service;
 const MAJORS = 'majors';
 class MajorsService extends Service {
   async index() {
-    const rs = await this.ctx.helper.index(MAJORS);
+    const sql = 'SELECT a.id ,a.name,a.info,a.academyId,b.name AS academy_name FROM  majors as a,academies AS b WHERE a.academyId = b.id';
+    const rs = await this.ctx.helper.query(sql);
     return rs;
   }
 
@@ -28,7 +29,7 @@ class MajorsService extends Service {
     return rs;
   }
   async findOneByProperties(params) {
-    const rs = await this.ctx.helper.findOneByPropertys(params);
+    const rs = await this.ctx.helper.findOneByPropertys(MAJORS,params);
     return rs;
   }
 }

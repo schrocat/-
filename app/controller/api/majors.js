@@ -26,6 +26,8 @@ class MajorsController extends Controller {
     const {ctx} = this;
     ctx.validate(create_rule,ctx.request.body);
     const params = ctx.request.body;
+    params.createdAt = new Date();
+    params.updatedAt = new Date();
     const hasOne = await this.service.api.majors.findOneByProperties({name: params.name});
     if(hasOne!=null){
       const err = this.config.error;
@@ -41,6 +43,7 @@ class MajorsController extends Controller {
     ctx.validate(update_rule,ctx.request.body);
     const params = ctx.request.body;
     params.id = ctx.params.id;
+    params.updatedAt = new Date();
     const hasOne = await this.service.api.majors.show(params.id);
     if(hasOne==null) {
       const err = this.config.error;
@@ -60,7 +63,7 @@ class MajorsController extends Controller {
   async destroy() {
     const { ctx } = this;
     const mid = ctx.params.id;
-    const hasOne = await ctx.helper.show(mid);
+    const hasOne = await this.service.api.majors.show(mid);
     if(hasOne==null){
       const err = this.config.error;
       ctx.helper.$fail(err.NOT_EXISTED_OBJECT.code,err.NOT_EXISTED_OBJECT.msg);

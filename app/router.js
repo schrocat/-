@@ -12,9 +12,9 @@ module.exports = app => {
 
   router.resources('academys','/api/academys',controller.api.academys)
   router.resources('oas','/api/oas',controller.api.oas);
-  router.resources('major','/api/majors',controller.api.majors);
+  router.resources('majors','/api/majors',controller.api.majors);
 
   router.post('/api/files',controller.api.files.create);
   router.post('/api/getOas',controller.api.oas.getAllByUserId);
-  router.delete('/api/oas/del/:id',controller.api.oas.delete)
+  router.delete('/api/oas/del/:id',controller.api.oas.delete);
 };
