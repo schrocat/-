@@ -7,10 +7,10 @@ const OAS = 'oas';
 class OasService extends Service {
   async index(type) {
     if(type!='del'){
-      const sql = 'select a.id as id,title,content,type,email,c.name as academy_name from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null'
+      const sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null'
         return await this.ctx.helper.query(sql);
-      }else{
-      const sql = 'select a.id as id,title,content,type,email,c.name as academy_name from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null';
+    }else{
+      const sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null';
       return await this.ctx.helper.query(sql);
     }
   }
@@ -48,10 +48,10 @@ class OasService extends Service {
   
   async getAllByUserId(id, type) {
     if(type!='del'){
-      const sql = `select a.id as id,title,content,type,email,c.name as academy_name from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null and a.userId = ${id}`;
+      const sql = `select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null and a.userId = ${id}`;
         return await this.ctx.helper.query(sql);
       }else{
-      const sql = `select a.id as id,title,content,type,email,c.name as academy_name from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null and a.userId = ${id}`;
+      const sql = `select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null and a.userId = ${id}`;
       return await this.ctx.helper.query(sql);
     }
   }

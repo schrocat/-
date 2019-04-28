@@ -13,6 +13,7 @@ module.exports = app => {
   router.resources('academys','/api/academys',controller.api.academys)
   router.resources('oas','/api/oas',controller.api.oas);
   router.resources('majors','/api/majors',controller.api.majors);
+  router.resources('administrators','/api/administrators',controller.api.administrator);
 
   router.post('/api/files',controller.api.files.create);
   router.post('/api/getOas',controller.api.oas.getAllByUserId);

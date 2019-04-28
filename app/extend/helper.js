@@ -60,6 +60,11 @@ module.exports =  {
         const rs = await app.mysql.get(DB2).query(sql);
         return rs;
     },
+    async query2(sql,arr){
+        const {app} = this;
+        const rs = await app.mysql.get(DB2).query(sql,arr);
+        return rs;
+    },
     //***************数据库操作---end-----***************************** */
 
     // **************response to frontEnd*****************************//
