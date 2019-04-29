@@ -14,7 +14,7 @@ module.exports = app => {
   router.resources('oas','/api/oas',controller.api.oas);
   router.resources('majors','/api/majors',controller.api.majors);
   router.resources('administrators','/api/administrators',controller.api.administrator);
-
+  router.resources('students','/api/students',controller.api.student)
   router.post('/api/files',controller.api.files.create);
   router.post('/api/getOas',controller.api.oas.getAllByUserId);
   router.delete('/api/oas/del/:id',controller.api.oas.delete);

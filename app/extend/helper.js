@@ -63,6 +63,11 @@ module.exports =  {
         const rs = await app.mysql.get(DB2).query(sql,arr);
         return rs;
     },
+    async transaction(){
+        const {app} = this;
+        const conn = await app.mysql.get(DB2).beginTransaction();
+        return conn;
+    },
     //***************数据库操作---end-----***************************** */
 
     // **************response to frontEnd*****************************//
