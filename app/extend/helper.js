@@ -11,8 +11,6 @@ module.exports =  {
         const md5 = crypto.createHmac('md5',pwdSecrect);
         return md5.update(password).digest('hex');
     },
-
-
     //***************数据库操作---begin-----***************************** */
     // 获取数据表的所有数据元组
     async index(table) {
