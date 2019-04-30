@@ -32,7 +32,11 @@ const update_rule = {
 };
 class StudentController extends Controller {
     async getStudents() {
-
+        const {ctx} = this;
+        const params = ctx.request.body;
+        ctx.validate(update_rule,params);
+        const rs = await this.service.api.student.getStudents(params);
+        ctx.helper.$success(rs);
     }
     async create() {
         const { ctx } = this;
