@@ -27,11 +27,14 @@ class StudentService extends Service {
         sql += `and b.role = ${params.role} `;
     }
     sql+='order by a.id ';
-    if (params.offset!==null&&params.pageSize!==null){
+    const total = await this.ctx.helper.query(sql);
+    if ((params.offset)&&(params.pageSize)){
         sql+= `limit ${params.offset},${params.pageSize}`
     }
-    console.log(sql)
-    const rs = this.ctx.helper.query(sql)
+    const rs = {};
+    const data = await this.ctx.helper.query(sql);
+    rs.total = total.length;
+    rs.data = data;
     return rs;
   }
 

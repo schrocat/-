@@ -40,7 +40,9 @@ class OasController extends Controller {
   async index() {
     const {ctx} = this;
     const type = ctx.query.type;
-    const rs = await this.service.api.oas.index(type);
+    const offset = ctx.query.offset;
+    const pageSize = ctx.query.pageSize;
+    const rs = await this.service.api.oas.index(type,offset,pageSize);
     ctx.helper.$success(rs);
   }
 
@@ -63,11 +65,10 @@ class OasController extends Controller {
 
   async update() {
     const { ctx } = this;
-    // ctx.validate(create_rule,ctx.request.body);
     ctx.validate(rule,ctx.request.body);
     const params = ctx.request.body;
-    params.updatedAt = new Date();
     params.id = ctx.params.id;
+    params.updatedAt = new Date();
     const hasOne = await this.service.api.oas.show(params.id)
     if(hasOne==null){
       const err = this.config.error;
@@ -75,7 +76,7 @@ class OasController extends Controller {
       return;
     }
     const rs = await this.service.api.oas.update(params);
-    ctx.helper.$success(rs,0,'ok',204);
+    ctx.helper.$success(rs);
   }
 
   async destroy() {

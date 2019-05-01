@@ -5,14 +5,22 @@ const Service = require('egg').Service;
 const OAS = 'oas';
 
 class OasService extends Service {
-  async index(type) {
+  async index(type,offset,pageSize) {
+    var sql = '';
+    const rs = {};
     if(type!='del'){
-      const sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null'
-        return await this.ctx.helper.query(sql);
+        sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null ';
     }else{
-      const sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null';
-      return await this.ctx.helper.query(sql);
+        sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null ';
     }
+    const total = await this.ctx.helper.query(sql);
+    if((offset)&&(pageSize)){
+        sql+=`limit ${offset},${pageSize}`;
+    }
+    const data =  await this.ctx.helper.query(sql);
+    rs.total = total.length;
+    rs.data = data;
+    return rs;
   }
 
   async create(params, files) {
