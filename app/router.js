@@ -22,4 +22,5 @@ module.exports = app => {
   router.delete('/api/oas/del/:id',controller.api.oas.delete);
   router.post('/api/getStudents',controller.api.student.getStudents);
   router.get('/api/getStuTotal',controller.api.student.getTotal);
+  router.get('/api/workProperty',controller.api.statistics.getWorkProperty);
 };
