@@ -20,5 +20,6 @@ module.exports = app => {
   router.post('/api/files',controller.api.files.create);
   router.post('/api/getOas',controller.api.oas.getAllByUserId);
   router.delete('/api/oas/del/:id',controller.api.oas.delete);
-  router.post('/api/getStudents',controller.api.student.getStudents)
+  router.post('/api/getStudents',controller.api.student.getStudents);
+  router.get('/api/getStuTotal',controller.api.student.getTotal);
 };

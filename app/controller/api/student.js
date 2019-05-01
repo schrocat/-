@@ -30,11 +30,27 @@ const update_rule = {
         required: false,
     },
 };
+const limit = {
+    offset: {
+        type:'int',
+        required: false
+    },
+    pageSize: {
+        type:'int',
+        required: false
+    },
+};
 class StudentController extends Controller {
+    async getTotal(){
+        const {ctx} = this;
+        const rs = await this.service.api.student.getTotal();
+        ctx.helper.$success(rs);
+    }
     async getStudents() {
         const {ctx} = this;
         const params = ctx.request.body;
         ctx.validate(update_rule,params);
+        ctx.validate(limit,params);
         const rs = await this.service.api.student.getStudents(params);
         ctx.helper.$success(rs);
     }
