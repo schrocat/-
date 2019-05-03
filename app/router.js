@@ -23,4 +23,7 @@ module.exports = app => {
   router.post('/api/getStudents',controller.api.student.getStudents);
   router.get('/api/getStuTotal',controller.api.student.getTotal);
   router.get('/api/workProperty',controller.api.statistics.getWorkProperty);
+  router.get('/api/location',controller.api.statistics.getLocation);
+  router.get('/api/position',controller.api.statistics.getPosition);
+  router.get('/api/eRate',controller.api.statistics.getERate);
 };

@@ -76,6 +76,11 @@ module.exports = appInfo => {
       code: 1005,
       name: 'USERNAME_ERROR',
       msg: '用户名不存在',
+    },
+    INVALID_PARAMS: {
+      code: 1006,
+      name: 'INVALID_PARAMS',
+      msg: '非法参数'
     }
   }
 
