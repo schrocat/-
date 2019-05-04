@@ -62,7 +62,34 @@ class StatisticsService extends Service {
       sql+= `and year(graduateTime)=${year} `;
     }
     sql+= 'GROUP BY nowStatus';
-    const
+    const rs = [];
+    const data = await this.ctx.helper.query(sql);
+    for (let i = 0; i < data.length; i++) {
+      const e = data[i];
+      e.nowStatus = this.setNowStatus(e.nowStatus);
+      rs.push(e)
+    }
+    return rs;
+  }
+  setNowStatus(s){
+    switch (s) {
+      case 1:
+        return '待就业';
+      case 2:
+        return '签协议';
+      case 3: 
+        return '签合同';
+      case 4:
+        return '升学';
+      case 5: 
+        return '留学、深造';
+      case 6:
+        return '自主创业';
+      case 7: 
+        return '不就业';
+      default:
+        return '其他'
+    }
   }
 }
 

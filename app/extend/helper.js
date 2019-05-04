@@ -84,10 +84,11 @@ module.exports =  {
     //================================================================//
     //===================判断是否是数字================================//
     isInt (data) {
-        if(parseInt(data).toString() === 'NaN'){
-            return false;
+        var resPos = /^\d+(\.\d+)?$/;
+        if(resPos.test(data)){
+            return true
         }
-        return true;
+        return false;
     },
     //====================格式化数字===================================//
     formatFloat (s, n) {

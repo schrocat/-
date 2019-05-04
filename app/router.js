@@ -26,4 +26,5 @@ module.exports = app => {
   router.get('/api/location',controller.api.statistics.getLocation);
   router.get('/api/position',controller.api.statistics.getPosition);
   router.get('/api/eRate',controller.api.statistics.getERate);
+  router.get('/api/modus',controller.api.statistics.getModus);
 };

@@ -27,7 +27,7 @@ class OasService extends Service {
     const rs = await this.ctx.helper.create(OAS,params);
     const id = rs.insertId;
     for( var i = 0;i<files.length; i++){
-      var p = files[0];
+      var p = files[i];
       p.oaId = id;
       this.service.api.files.create(p);
     }

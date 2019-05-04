@@ -1,7 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
-
+const ACADEMIES = 'academies';
 class AcademysService extends Service {
   async index() {
     const { ctx } = this;
@@ -14,9 +14,9 @@ class AcademysService extends Service {
     const rs = await app.mysql.get('db2').insert('academy',params);
     return rs;
   }
-
-  async update(params) {
-    
+  async show(mid) {
+    const rs = await this.ctx.helper.show(ACADEMIES,mid);
+    return rs;
   }
 }
 

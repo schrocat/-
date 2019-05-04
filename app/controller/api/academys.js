@@ -66,6 +66,12 @@ class AcademysController extends Controller {
       const rs = await ctx.helper.destroy(ACADEMIES,mid);
       ctx.helper.$success(rs);
     }
+    async show () {
+      const {ctx} = this;
+      const mid = ctx.params.id;
+      const rs = await this.service.api.academys.show(mid);
+      ctx.helper.$success(rs)
+    }
 }
 
 module.exports = AcademysController;

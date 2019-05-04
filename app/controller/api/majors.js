@@ -75,6 +75,12 @@ class MajorsController extends Controller {
     const rs = await this.service.api.majors.destroy(mid);
     ctx.helper.$success(rs);
   }
+  async show() {
+    const {ctx} = this;
+    const mid = ctx.params.id;
+    const rs = await this.service.api.majors.show(mid);
+    ctx.helper.$success(rs)
+  }
 }
 
 module.exports = MajorsController;

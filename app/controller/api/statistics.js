@@ -60,6 +60,18 @@ class StatisticsController extends Controller {
     const rs =await this.service.api.statistics.getERate(year);
     ctx.helper.$success(rs);
   }
+  async getModus() {
+    const {ctx} = this;
+    const year = ctx.query.year;
+    const isInt = ctx.helper.isInt(year);
+    if(!isInt&&(year)){
+      const err = this.config.error;
+      ctx.helper.$fail(err.INVALID_PARAMS.code,err.INVALID_PARAMS.msg);
+      return;
+    }
+    const rs = await this.service.api.statistics.getModus(year);
+    ctx.helper.$success(rs);
+  }
 }
 
 module.exports = StatisticsController;
