@@ -7,6 +7,7 @@ class CompanyController extends Controller {
       const {ctx} = this;
       const offset = ctx.query.offset;
       const pageSize = ctx.query.pageSize;
+      console.log(`pageSize=${pageSize},offset=${offset}`)
       const rs = await this.service.my.company.index(offset,pageSize);
       ctx.helper.$success(rs)
     // return await this.ctx.helper.index1(COMPANY);

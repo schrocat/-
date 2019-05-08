@@ -35,6 +35,8 @@ module.exports = app => {
   router.get('/api/evaluate',controller.api.statistics.getEvaluate);
 
   router.resources('company','/api/company',controller.my.company);
+  router.resources('recruitment','/api/recruitment',controller.my.recruiment);
 
   router.get('/api/comTotal',controller.my.company.total)
+  router.get('/api/recTotal',controller.my.recruiment.total);
 };
