@@ -3,6 +3,7 @@
 const crypto = require('crypto');
 
 const DB2 = 'db2';
+const DB1 = 'db1';
 
 module.exports =  {
     cryptPwd(password){
@@ -69,7 +70,51 @@ module.exports =  {
         return conn;
     },
     //***************数据库操作---end-----***************************** */
+    //****************数据库db1操作************************************ */
+    async index1(table) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).select(table);
+        return rs;
+    },// 向表中插入一条数据
+    async create1(table,params) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).insert(table,params);
+        return rs;
+    },
+    // 更新数据
+    async update1(table,params) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).update(table,params);
+        return rs;
+    },
+    // 删除id为mid的数据（id为主键）
+    async destroy1(table,mid) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).delete(table,{id: mid});
+        return rs;
+    },
+    // 获取id为mid的数据元组
+    async show1(table,mid) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).get(table,{id: mid});
+        return rs;
+    },
+    async findOneByPropertys1(table,params) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).get(table,params);
+        return rs;
+    },
+    async selectOnContidition1(table,conditions) {
+        const { app } = this;
+        const rs = await app.mysql.get(DB1).select(table,conditions);
+        return rs;
+    },
 
+    async query1(sql){
+        const {app} = this;
+        const rs = await app.mysql.get(DB1).query(sql);
+        return rs;
+    },
     // **************response to frontEnd*****************************//
     $success(data = {} ,code = 0,msg = 'ok',status = 200){
         const {ctx} = this;

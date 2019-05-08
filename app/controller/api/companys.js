@@ -5,13 +5,11 @@ const Controller = require('egg').Controller;
 class CompanysController extends Controller {
     async index() {
         const {ctx} = this;
-        const offset = ctx.query.offset;
-        const pageSize = ctx.query.pageSize;
-        const rs = await this.service.api.companys.index(offset,pageSize);
+        const rs = await this.service.api.companys.index();
         ctx.helper.$success(rs);
     }
-    async create() {
-
+    async create(params) {
+        const {ctx} = this;
     }
 }
 

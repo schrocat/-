@@ -11,7 +11,7 @@ class StudentService extends Service {
               + 'FROM users as a,`user-infos`AS b,academies as c,majors AS d '
               + 'WHERE a.id = b.id AND b.academyId =c.id AND  b.majorId = d.id AND (b.role = 1 OR b.role = 2)';
     // console.log(sql)
-              const rs = await this.ctx.helper.query(sql)
+    const rs = await this.ctx.helper.query(sql)
     return rs;
   }
   async getStudents(params) {
@@ -41,7 +41,6 @@ class StudentService extends Service {
 
   async create (user,info) {
     const conn = await this.ctx.helper.transaction();
-    // console.log(conn)
     try {
         const rs = await conn.insert(USER,user);
         if(rs.affectedRows === 1){

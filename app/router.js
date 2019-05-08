@@ -16,6 +16,7 @@ module.exports = app => {
   router.resources('administrators','/api/administrators',controller.api.administrator);
   router.resources('students','/api/students',controller.api.student);
   router.resources('companies','/api/companies',controller.api.companys)
+  router.resources('comusers','/api/comusers',controller.api.comusers);
 
   router.post('/api/files',controller.api.files.create);
   router.post('/api/getOas',controller.api.oas.getAllByUserId);
@@ -27,4 +28,13 @@ module.exports = app => {
   router.get('/api/position',controller.api.statistics.getPosition);
   router.get('/api/eRate',controller.api.statistics.getERate);
   router.get('/api/modus',controller.api.statistics.getModus);
+  router.get('/api/deepTotal',controller.api.statistics.getDeepTotal);
+  router.get('/api/deep',controller.api.statistics.getDeep);
+  router.get('/api/ySalary',controller.api.statistics.getYSalary);
+  router.get('/api/employment',controller.api.statistics.getEmployment);
+  router.get('/api/evaluate',controller.api.statistics.getEvaluate);
+
+  router.resources('company','/api/company',controller.my.company);
+
+  router.get('/api/comTotal',controller.my.company.total)
 };

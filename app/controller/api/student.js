@@ -61,7 +61,7 @@ class StudentController extends Controller {
         ctx.validate(create_rule,ctx.request.body);
         const tmp = ctx.request.body;
         user.email = tmp.email;
-        user.password = ctx.helper.cryptPwd(tmp.email);
+        user.password = ctx.helper.cryptPwd(tmp.password);
         user.createdAt = new Date();
         user.updatedAt =  new Date();
         info.email = tmp.email;
