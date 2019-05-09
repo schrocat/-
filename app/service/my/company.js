@@ -4,15 +4,15 @@ const Service = require('egg').Service;
 const COMPANY = 'company'
 class CompanyService extends Service {
   async index(offset,pageSize) {
-    // console.log(offset)
-    return await this.ctx.helper.selectOnContidition1(COMPANY,{
+    const rs = {}
+    const data = await this.ctx.helper.selectOnContidition1(COMPANY,{
       limit: pageSize,
       offset: offset,
-    })
-  }
-  async total(){
-    const sql = 'select count(*) as total from company';
-    return await this.ctx.helper.query1(sql);
+    });
+    const total = await this.ctx.helper.index1(COMPANY);
+    rs.total = total.length;
+    rs.data = data;
+    return rs;
   }
   async destroy(mid){
     return await this.ctx.helper.destroy1(COMPANY,mid)

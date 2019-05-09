@@ -3,8 +3,14 @@
 const Controller = require('egg').Controller;
 
 const rule = {
-  name: 'string',
-  info: 'string',
+  name: {
+    type: 'string',
+    required: true
+  },
+  info: {
+    type: 'string',
+    required: false
+  }
 };
 
 const ACADEMIES = 'academies';
@@ -23,7 +29,6 @@ class AcademysController extends Controller {
       params.createdAt = new Date();
       params.updatedAt = new Date();
       const hasOne = await ctx.helper.findOneByPropertys(ACADEMIES,{name: params.name});
-      // console.log(hasOne!=null)
       if(hasOne!=null){
         const err = this.config.error;
         ctx.helper.$fail(err.EXISTED_OBJECT.code,err.EXISTED_OBJECT.msg);

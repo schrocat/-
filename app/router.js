@@ -17,6 +17,7 @@ module.exports = app => {
   router.resources('students','/api/students',controller.api.student);
   router.resources('companies','/api/companies',controller.api.companys)
   router.resources('comusers','/api/comusers',controller.api.comusers);
+  router.resources('posts','/api/posts',controller.api.posts);
 
   router.post('/api/files',controller.api.files.create);
   router.post('/api/getOas',controller.api.oas.getAllByUserId);
@@ -37,6 +38,6 @@ module.exports = app => {
   router.resources('company','/api/company',controller.my.company);
   router.resources('recruitment','/api/recruitment',controller.my.recruiment);
 
-  router.get('/api/comTotal',controller.my.company.total)
+  // router.get('/api/comTotal',controller.my.company.total)
   router.get('/api/recTotal',controller.my.recruiment.total);
 };

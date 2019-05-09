@@ -5,16 +5,9 @@ const Controller = require('egg').Controller;
 class CompanyController extends Controller {
   async index() {
       const {ctx} = this;
-      const offset = ctx.query.offset;
-      const pageSize = ctx.query.pageSize;
-      console.log(`pageSize=${pageSize},offset=${offset}`)
+      const offset = ctx.query.offset?parseInt(ctx.query.offset):0;
+      const pageSize = ctx.query.pageSize?parseInt(ctx.query.pageSize):1000000;
       const rs = await this.service.my.company.index(offset,pageSize);
-      ctx.helper.$success(rs)
-    // return await this.ctx.helper.index1(COMPANY);
-  }
-  async total() {
-      const {ctx} = this;
-      const rs = await this.service.my.company.total();
       ctx.helper.$success(rs)
   }
   async destroy() {

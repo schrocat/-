@@ -9,9 +9,9 @@ class OasService extends Service {
     var sql = '';
     const rs = {};
     if(type!='del'){
-        sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null ';
+        sql = 'select a.id as id,title,content,type,email,c.name as academy, a.createdAt,a.updatedAt from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is null ';
     }else{
-        sql = 'select a.id as id,title,content,type,email,c.name as academy from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null ';
+        sql = 'select a.id as id,title,content,type,email,c.name as academy, from oas as a,users as b,academies as c where a.userId = b.id and a.academyId = c.id and a.deletedAt is not null ';
     }
     const total = await this.ctx.helper.query(sql);
     if((offset)&&(pageSize)){

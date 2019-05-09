@@ -49,8 +49,15 @@ class StudentController extends Controller {
     async getStudents() {
         const {ctx} = this;
         const params = ctx.request.body;
-        ctx.validate(update_rule,params);
-        ctx.validate(limit,params);
+        console.log(params)
+        ctx.validate({
+            offset:limit.offset,
+            pageSize: limit.pageSize,
+            academyId: update_rule.academyId,
+            majorId: update_rule.majorId,
+            role: update_rule.role
+        },params);
+        // ctx.validate(limit,params);
         const rs = await this.service.api.student.getStudents(params);
         ctx.helper.$success(rs);
     }

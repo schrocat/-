@@ -29,9 +29,7 @@ class StudentService extends Service {
     }
     sql+='order by a.id ';
     const total = await this.ctx.helper.query(sql);
-    if ((params.offset)&&(params.pageSize)){
-        sql+= `limit ${params.offset},${params.pageSize}`
-    }
+    sql+= `limit ${params.offset},${params.pageSize}`
     const rs = {};
     const data = await this.ctx.helper.query(sql);
     rs.total = total.length;
